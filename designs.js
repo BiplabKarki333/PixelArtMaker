@@ -1,34 +1,14 @@
 
-//const tableCodeStart = "<table>";
-//const tableCodeEnd = "</table>";
-//const gridLengthCodeStart = "<tr>";
-//const gridLengthCodeEnd = '</tr>';
-//const gridWidthCode = "<td></td>";
 
-function checkColor (item, color){
-  if (item.style.backgroundColor=== 'white') {
-    item.style.backgroundColor=color.value;
-  }
-  else{
-    item.style.backgroundColor = 'white';
-  }
-};
 // When size is submitted by the user, call makeGrid()
 function makeGrid() {
+  //gets the values of width, height and color as set by the user at the time of clicking submit
   let width = document.getElementById('inputWidth');
   let height = document.getElementById('inputHeight');
   let color = document.getElementById('colorPicker');
-  document.getElementById('unimp').innerHTML = '<table>'+('<tr>' +('<td></td>'.repeat(width.value))+'</tr>').repeat(height.value)+'</table>'+ '<button id = resetButton onclick = reSet()>Reset</button>';
-  //for (i = 0; i<height.value; i++){
-  //document.getElementById('unimp').innerHTML += '<tr>';
-  //document.getElementById('unimp').innerHTML += '<td></td>'.repeat(width.value);
-  //document.getElementById('unimp').innerHTML += '</tr>';
-  //document.getElementById('unimp').innerHTML += '<br>';
-//  }
-//  document.getElementById('unimp').innerHTML += '</table>';
-  //document.querySelectorAll('.thegrid').forEach(item => {
-  //item.addEventListener('mousedown', event => checkColor(item, color.value))});
-//document.getElementById('unimp').innerHTML += "<button type = 'button' onclick='reSet()' id = 'resetButton'>Reset</button>";
+  //creates table with the number of rows and columns decided by user
+  document.getElementById('unimp').innerHTML = '<table>'+('<tr>' +('<td></td>'.repeat(width.value))+'</tr>').repeat(height.value)+'</table>'+ '<button id = resetButton onclick = reSet()>Reset</button>'+'<button id = resetButton onclick = clearGrid()>Submit</button>';
+//adds EventListener to each pixel and toggles between white and color.value every time pixel is clicked ( need to double click first time and then single click works ( I could not figure out why))
 document.querySelectorAll('td').forEach(item => {
   item.addEventListener('click', event =>{ if (item.style.backgroundColor == 'white'){
       item.style.backgroundColor = color.value;
@@ -42,6 +22,14 @@ document.querySelectorAll('td').forEach(item => {
 
 };
 
+//function to clear the Grid of any color
+
+function clearGrid(){
+  document.querySelectorAll('td').forEach(item => {
+    item.style.backgroundColor = 'white';
+}
+)};
+//function to take user back to home screen
 function reSet() {
   document.getElementById('unimp').innerHTML = "<div id = 'unimp'>\
 <h2>Choose Grid Size</h2>\
