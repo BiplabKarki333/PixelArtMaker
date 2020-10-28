@@ -8,6 +8,10 @@ function makeGrid() {
   let color = document.getElementById('colorPicker');
   //creates table with the number of rows and columns decided by user
   document.getElementById('unimp').innerHTML = '<table>'+('<tr>' +('<td></td>'.repeat(width.value))+'</tr>').repeat(height.value)+'</table>'+ '<button id = resetButton onclick = reSet()>Reset</button>'+'<button id = resetButton onclick = clearGrid()>Submit</button>';
+//sets the color of all pixels to white
+document.querySelectorAll('td').forEach(item => {
+  item.style.backgroundColor = 'white';
+})
 //adds EventListener to each pixel and toggles between white and color.value every time pixel is clicked ( need to double click first time and then single click works ( I could not figure out why))
 document.querySelectorAll('td').forEach(item => {
   item.addEventListener('click', event =>{ if (item.style.backgroundColor == 'white'){
@@ -16,7 +20,7 @@ document.querySelectorAll('td').forEach(item => {
     else {
       item.style.backgroundColor = 'white';
     }
-});
+  });
 });
 
 
@@ -29,7 +33,7 @@ function clearGrid(){
     item.style.backgroundColor = 'white';
 }
 )};
-//function to take user back to home screen
+//function to take user back to home screen where users can choose the grid size again
 function reSet() {
   document.getElementById('unimp').innerHTML = "<div id = 'unimp'>\
 <h2>Choose Grid Size</h2>\
